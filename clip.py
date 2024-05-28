@@ -2,6 +2,7 @@ import twitchio
 from twitchio.ext import commands
 import requests
 import logging
+from logging.handlers import RotatingFileHandler
 
 CLIENT_ID = 'your_client_id'
 ACCESS_TOKEN = 'your_access_token'
@@ -14,7 +15,8 @@ BROADCASTER_IDS = {
     'channel3': 'broadcaster_id3'
 }
 
-logging.basicConfig(level=logging.DEBUG)
+log_handler = RotatingFileHandler('bot.log', maxBytes=50*1024*1024, backupCount=3)
+logging.basicConfig(level=logging.DEBUG, handlers=[log_handler])
 logger = logging.getLogger(__name__)
 
 class Bot(commands.Bot):
