@@ -7,6 +7,7 @@ There are obviously other services that do this, but they are rate limited. If y
 ## Features
 - Create clips via chat command `!clip`
 - Supports multiple Twitch channels
+- Provides error messages if clip creation fails.
 
 ## Requirements
 - Python 3.7+
