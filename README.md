@@ -2,6 +2,8 @@
 
 This bot allows users to create clips on specified Twitch channels via chat commands. It uses the Twitch API to capture and create clips and can be configured for multiple channels.
 
+There are obviously other services that do this, but they are rate limited. If you host your own, you can do unlimited clipping (within reason).
+
 ## Features
 - Create clips via chat command `!clip`
 - Supports multiple Twitch channels
