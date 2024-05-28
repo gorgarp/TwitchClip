@@ -38,7 +38,22 @@ Update the `clippy.py` script with your details:
 - `CHANNELS`
 - `BROADCASTER_IDS`
 
-### 5. Find the Broadcaster ID
+### 5. Obtain the Access Token
+
+#### Register Your Application
+1. Go to the [Twitch Developer Console](https://dev.twitch.tv/console/apps) and register a new application.
+2. Set the OAuth Redirect URL to `https://oauth-redirect.cloudapp.net/` or any other valid redirect URL you control.
+3. Note down your `Client ID` and `Client Secret`.
+
+#### Generate the Access Token
+1. Open the following URL in your browser, replacing `YOUR_CLIENT_ID` with your actual Client ID:
+```
+https://id.twitch.tv/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=https://oauth-redirect.cloudapp.net/&response_type=token&scope=clips:edit
+```
+2. Authorize the application to access your Twitch account.
+3. Copy the access token from the URL fragment (`#access_token=YOUR_ACCESS_TOKEN`).
+
+### 6. Find the Broadcaster ID
 Use the following script to find the broadcaster ID:
 ```python
 import requests
@@ -61,7 +76,7 @@ user_info = response.json()
 print(user_info['data'][0]['id'])
 ```
 
-### 6. Create a Systemd Service
+### 7. Create a Systemd Service
 Create a service file `/etc/systemd/system/clippy.service`:
 ```ini
 [Unit]
@@ -81,7 +96,7 @@ Group=root
 WantedBy=multi-user.target
 ```
 
-### 7. Enable and Start the Service
+### 8. Enable and Start the Service
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl start clippy.service
@@ -98,3 +113,4 @@ Once the bot is running, users can create clips by typing `!clip` in the configu
 
 ## License
 This project is licensed under the MIT License.
+
